@@ -5,6 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:DevCleaner"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="MainWindow"
     Width="525" Height="350" mc:Ignorable="d">
+    <controls:MetroWindow.DataContext>
+        <local:MainWindow />
+    </controls:MetroWindow.DataContext>
     <Grid />
 </controls:MetroWindow>
 
