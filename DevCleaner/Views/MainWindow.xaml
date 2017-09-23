@@ -1,13 +1,25 @@
 ﻿<controls:MetroWindow
-    x:Class="DevCleaner.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:DevCleaner"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="MainWindow"
-    Width="525" Height="350" mc:Ignorable="d">
-    <controls:MetroWindow.DataContext>
-        <local:MainWindow />
-    </controls:MetroWindow.DataContext>
-    <Grid />
+  x:Class="DevCleaner.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:DevCleaner"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="DevCleaner"
+  Width="525" Height="350" mc:Ignorable="d">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Content="{Binding ScanPath}" />
+            <Button Grid.Column="1" Command="{Binding ScanCommand}">
+                Scan
+            </Button>
+        </Grid>
+    </Grid>
 </controls:MetroWindow>
 

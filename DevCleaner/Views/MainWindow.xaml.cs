@@ -1,4 +1,6 @@
-﻿namespace DevCleaner
+﻿using DevCleaner.ViewModels;
+
+namespace DevCleaner
 {
     /// <summary>
     /// Lógica de interacción para MainWindow.xaml
@@ -8,6 +10,7 @@
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new MainWindowViewModel();
         }
     }
 }
