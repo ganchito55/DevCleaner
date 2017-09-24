@@ -27,3 +27,5 @@ It depends, mainly, of the number and kind of the projects that you have, howeve
     +-------+---------+---------+
     
 As you can see, I have half of the files, but the size is ~18%.
+
+![DevCleaner](https://i.imgur.com/VBEocfS.png)
