@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Data;
 using System.IO;
 using System.Linq;
-using System.Xml;
 using System.Xml.Linq;
 
 namespace DevCleaner.Models.Projects
@@ -10,7 +8,7 @@ namespace DevCleaner.Models.Projects
     public class Project
     {
         public string IconPath { get; set; }
-        public string Type { get; set; }
+        public string Name { get; set; }
         public bool IsSelected { get; set; } = false;
 
         private string _projectPath;
@@ -18,7 +16,7 @@ namespace DevCleaner.Models.Projects
         public Project(string projectPath)
         {
             _projectPath = projectPath;
-            Type = Path.GetFileNameWithoutExtension(projectPath);
+            Name = Path.GetFileNameWithoutExtension(projectPath);
         }
 
         /// <summary>
