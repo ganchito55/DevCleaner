@@ -1,7 +1,10 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Threading;
 using DevCleaner.Models;
 using DevCleaner.Models.Projects;
 using Prism.Commands;
@@ -25,7 +28,7 @@ namespace DevCleaner.ViewModels
             {
                 ScanPath = folderBrowserDialog.SelectedPath;
                 Solutions.Clear();
-                GetAllProjects();
+                new Task(GetAllProjects).Start();
             }
         }
 
@@ -49,7 +52,10 @@ namespace DevCleaner.ViewModels
                         solutionType.Projects.Add(projectType);
                     }
                 }
-                Solutions.Add(solutionType);
+                App.Current.Dispatcher.Invoke(()=>
+                {
+                    Solutions.Add(solutionType);
+                });
             }
           
         }
