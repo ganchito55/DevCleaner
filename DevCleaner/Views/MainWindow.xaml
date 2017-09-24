@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -40,14 +41,28 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
-        <StackPanel
-          Grid.Row="2" Orientation="Horizontal"
-          Visibility="{Binding Solutions.Count, Converter={StaticResource IntToVisibilityConverter}}">
-            <CheckBox IsChecked="{Binding CleanAllSolutions}" />
-            <Label>Clean all solutions and projects</Label>
-            <Rectangle Width="40" Fill="Transparent" />
-            <Button Command="{Binding CleanCommand}">Clean</Button>
-        </StackPanel>
+        <Grid Grid.Row="2" Visibility="{Binding Solutions.Count, Converter={StaticResource IntToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox Grid.Column="0" IsChecked="{Binding CleanAllSolutions}" />
+            <Label Grid.Column="1">Clean all solutions and projects</Label>
+            <Button Grid.Column="2" Command="{Binding CleanCommand}">Clean</Button>
+        </Grid>
+        <Grid Grid.Row="3" Visibility="{Binding CleanProgress, Converter={StaticResource IntToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Label>Cleaning...</Label>
+            <ProgressBar
+              Grid.Column="1"
+              Maximum="{Binding Solutions.Count}"
+              Minimum="0"
+              Value="{Binding CleanProgress}" />
+        </Grid>
     </Grid>
 </controls:MetroWindow>
 
