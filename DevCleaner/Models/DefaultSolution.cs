@@ -6,7 +6,18 @@ namespace DevCleaner.Models
     public class DefaultSolution : ISolution
     {
         public string Name { get; set; }
-        public bool IsSelected { get; set; } = false;
+        private bool _isChecked;
+
+        public bool IsSelected
+        {
+            get => _isChecked;
+            set
+            {
+                _isChecked = value;
+                Projects.ForEach(t => t.IsSelected = value);
+            }
+        }
+
         public List<Project> Projects { get; set; } = new List<Project>();
     }
 }

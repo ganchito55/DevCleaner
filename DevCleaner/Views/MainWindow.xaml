@@ -25,7 +25,10 @@
         <TreeView Grid.Row="1" ItemsSource="{Binding Solutions}">
             <TreeView.ItemTemplate>
                 <HierarchicalDataTemplate ItemsSource="{Binding Projects}">
-                    <Label Content="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding IsSelected}" />
+                        <Label Content="{Binding Name}" />
+                    </StackPanel>
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>

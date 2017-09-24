@@ -2,14 +2,22 @@
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using Prism.Mvvm;
 
 namespace DevCleaner.Models.Projects
 {
-    public class Project
+    public class Project : BindableBase
     {
         public string IconPath { get; set; }
         public string Name { get; set; }
-        public bool IsSelected { get; set; } = false;
+
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set => SetProperty(ref _isSelected, value);
+        }
 
         private string _projectPath;
 
