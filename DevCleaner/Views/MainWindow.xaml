@@ -20,6 +20,13 @@
                 Scan
             </Button>
         </Grid>
+        <ListView Grid.Row="1" ItemsSource="{Binding Solutions}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </controls:MetroWindow>
 

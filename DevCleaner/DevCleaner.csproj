@@ -78,6 +78,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Projects\AndroidProject.cs" />
+    <Compile Include="Models\Projects\CSharpProject.cs" />
+    <Compile Include="Models\DefaultSolution.cs" />
+    <Compile Include="Models\ISolution.cs" />
+    <Compile Include="Models\Projects\IosProject.cs" />
+    <Compile Include="Models\Projects\Project.cs" />
+    <Compile Include="Models\Projects\UwpProject.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

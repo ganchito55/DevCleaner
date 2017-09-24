@@ -1,6 +1,9 @@
-﻿using System.Data;
+﻿using System.Collections.ObjectModel;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using DevCleaner.Models;
+using DevCleaner.Models.Projects;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -21,7 +24,34 @@ namespace DevCleaner.ViewModels
             if (result == DialogResult.OK)
             {
                 ScanPath = folderBrowserDialog.SelectedPath;
+                Solutions.Clear();
+                GetAllProjects();
             }
+        }
+
+        private void GetAllProjects()
+        {
+            var solutions = Directory.GetFiles(_scanPath, "*.sln", SearchOption.AllDirectories);
+            Regex projectRegex = new Regex(@"((\w| |\.)+\\)?(\w| |\.)+\.csproj");
+            foreach (var solution in solutions)
+            {
+                ISolution solutionType = new DefaultSolution();
+                solutionType.Name = Path.GetFileNameWithoutExtension(solution);
+
+                var content = File.ReadAllText(solution);
+                var projects = projectRegex.Matches(content);
+                foreach (Match project in projects)
+                {
+                    //Get full path to the csproj file
+                    var projectType = Project.IdentifyProject(Path.Combine(Path.GetDirectoryName(solution),project.Value));
+                    if (projectType != null)
+                    {
+                        solutionType.Projects.Add(projectType);
+                    }
+                }
+                Solutions.Add(solutionType);
+            }
+          
         }
 
         private string _scanPath = "Introduce your path";
@@ -31,6 +61,8 @@ namespace DevCleaner.ViewModels
             get => _scanPath;
             set => SetProperty(ref _scanPath, value);
         }
+
+        public ObservableCollection<ISolution> Solutions { get; set; } = new ObservableCollection<ISolution>();
 
         public DelegateCommand ScanCommand { get; }
     }
