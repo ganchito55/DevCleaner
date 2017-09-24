@@ -11,6 +11,11 @@
     <controls:MetroWindow.Resources>
         <utils:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
     </controls:MetroWindow.Resources>
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Command="{Binding AboutCommand}" Content="About" />
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

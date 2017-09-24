@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevCleaner.Models;
 using DevCleaner.Models.Projects;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using Prism.Commands;
 using Prism.Mvvm;
 using Application = System.Windows.Application;
@@ -23,6 +25,16 @@ namespace DevCleaner.ViewModels
         {
             ScanCommand = new DelegateCommand(Scan);
             CleanCommand = new DelegateCommand(Clean);
+            AboutCommand = new DelegateCommand(About);
+        }
+
+        private async void About()
+        {
+            await ((MetroWindow) App.Current.MainWindow).ShowMessageAsync("About",
+                "Created by Jorge Durán aka ganchito55\n" +
+                "Icons by FlatIcon\n" +
+                "Theme by MahApps.Metro\n" +
+                "With PRISM as MVVM Framework");
         }
 
         public string ScanPath
@@ -52,6 +64,7 @@ namespace DevCleaner.ViewModels
 
         public DelegateCommand ScanCommand { get; }
         public DelegateCommand CleanCommand { get; }
+        public DelegateCommand AboutCommand { get; }
 
         private void Clean()
         {
