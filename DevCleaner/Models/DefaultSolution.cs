@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using DevCleaner.Models.Projects;
+using Prism.Mvvm;
 
 namespace DevCleaner.Models
 {
-    public class DefaultSolution : ISolution
+    public class DefaultSolution : BindableBase,ISolution
     {
         public string Name { get; set; }
         private bool _isChecked;
@@ -13,7 +14,7 @@ namespace DevCleaner.Models
             get => _isChecked;
             set
             {
-                _isChecked = value;
+                SetProperty(ref _isChecked, value);
                 Projects.ForEach(t => t.IsSelected = value);
             }
         }

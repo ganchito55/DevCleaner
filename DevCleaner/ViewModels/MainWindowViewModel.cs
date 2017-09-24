@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +18,15 @@ namespace DevCleaner.ViewModels
         public MainWindowViewModel()
         {
             ScanCommand = new DelegateCommand(Scan);
+            CleanCommand = new DelegateCommand(Clean);
+        }
+
+        private void Clean()
+        {
+            foreach (var solution in Solutions)
+            {
+                solution.Projects.ForEach(t=>t.CleanProject());
+            }
         }
 
         private void Scan()
@@ -68,8 +78,24 @@ namespace DevCleaner.ViewModels
             set => SetProperty(ref _scanPath, value);
         }
 
+        private bool _cleanAllSolutions;
+
+        public bool CleanAllSolutions
+        {
+            get => _cleanAllSolutions;
+            set
+            {
+                SetProperty(ref _cleanAllSolutions, value);
+                foreach (var solution in Solutions)
+                {
+                    solution.IsSelected = true;
+                }
+            }
+        }
+
         public ObservableCollection<ISolution> Solutions { get; set; } = new ObservableCollection<ISolution>();
 
         public DelegateCommand ScanCommand { get; }
+        public DelegateCommand CleanCommand { get; }
     }
 }

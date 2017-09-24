@@ -5,12 +5,17 @@
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:DevCleaner"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   xmlns:models="clr-namespace:DevCleaner.Models"
-  xmlns:projects="clr-namespace:DevCleaner.Models.Projects" Title="DevCleaner" Width="525"
-  Height="350" TitleCharacterCasing="Normal" mc:Ignorable="d">
+  xmlns:projects="clr-namespace:DevCleaner.Models.Projects"
+  xmlns:utils="clr-namespace:DevCleaner.Utils" Title="DevCleaner" Width="525" Height="350"
+  TitleCharacterCasing="Normal" mc:Ignorable="d">
+    <controls:MetroWindow.Resources>
+        <utils:IntToVisibilityConverter x:Key="IntToVisibilityConverter" />
+    </controls:MetroWindow.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -35,6 +40,14 @@
                 </HierarchicalDataTemplate>
             </TreeView.ItemTemplate>
         </TreeView>
+        <StackPanel
+          Grid.Row="2" Orientation="Horizontal"
+          Visibility="{Binding Solutions.Count, Converter={StaticResource IntToVisibilityConverter}}">
+            <CheckBox IsChecked="{Binding CleanAllSolutions}" />
+            <Label>Clean all solutions and projects</Label>
+            <Rectangle Width="40" Fill="Transparent" />
+            <Button Command="{Binding CleanCommand}">Clean</Button>
+        </StackPanel>
     </Grid>
 </controls:MetroWindow>
 

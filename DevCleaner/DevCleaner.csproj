@@ -85,6 +85,7 @@
     <Compile Include="Models\Projects\IosProject.cs" />
     <Compile Include="Models\Projects\Project.cs" />
     <Compile Include="Models\Projects\UwpProject.cs" />
+    <Compile Include="Utils\IntToVisibilityConverter.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
