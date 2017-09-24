@@ -32,7 +32,8 @@ namespace DevCleaner.ViewModels
         {
             await ((MetroWindow) App.Current.MainWindow).ShowMessageAsync("About",
                 "Created by Jorge Durán aka ganchito55\n" +
-                "Icons by FlatIcon\n" +
+                "Icons by Flaticon\n" +
+                "Logo by Freepik, thanks for post it in Flaticon\n" +
                 "Theme by MahApps.Metro\n" +
                 "With PRISM as MVVM Framework");
         }
