@@ -32,7 +32,7 @@ namespace DevCleaner.ViewModels
         private void GetAllProjects()
         {
             var solutions = Directory.GetFiles(_scanPath, "*.sln", SearchOption.AllDirectories);
-            Regex projectRegex = new Regex(@"((\w| |\.)+\\)?(\w| |\.)+\.csproj");
+            Regex projectRegex = new Regex(@"((\w| |\.)+\\)+(\w| |\.)+\.csproj");
             foreach (var solution in solutions)
             {
                 ISolution solutionType = new DefaultSolution();
@@ -54,7 +54,7 @@ namespace DevCleaner.ViewModels
           
         }
 
-        private string _scanPath = "Introduce your path";
+        private string _scanPath;
 
         public string ScanPath
         {
