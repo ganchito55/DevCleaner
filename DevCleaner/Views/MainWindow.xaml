@@ -3,8 +3,10 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:DevCleaner"
-  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Title="DevCleaner"
-  Width="525" Height="350" TitleCharacterCasing="Normal" mc:Ignorable="d">
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:models="clr-namespace:DevCleaner.Models"
+  xmlns:projects="clr-namespace:DevCleaner.Models.Projects" Title="DevCleaner" Width="525"
+  Height="350" TitleCharacterCasing="Normal" mc:Ignorable="d">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,9 +26,10 @@
         </Grid>
         <TreeView Grid.Row="1" ItemsSource="{Binding Solutions}">
             <TreeView.ItemTemplate>
-                <HierarchicalDataTemplate ItemsSource="{Binding Projects}">
-                    <StackPanel Orientation="Horizontal">
+                <HierarchicalDataTemplate DataType="models:ISolution" ItemsSource="{Binding Projects}">
+                    <StackPanel d:DataContext="{d:DesignInstance Type=projects:Project}" Orientation="Horizontal">
                         <CheckBox IsChecked="{Binding IsSelected}" />
+                        <Image Height="20" Source="{Binding IconPath}" />
                         <Label Content="{Binding Name}" />
                     </StackPanel>
                 </HierarchicalDataTemplate>

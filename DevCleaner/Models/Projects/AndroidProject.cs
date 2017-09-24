@@ -4,6 +4,7 @@
     {
         public AndroidProject(string projectPath) : base(projectPath)
         {
+            IconPath = "/Icons/android.png";
         }
 
 

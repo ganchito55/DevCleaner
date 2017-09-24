@@ -4,6 +4,7 @@
     {
         public UwpProject(string projectPath) : base(projectPath)
         {
+            IconPath = "/Icons/windows.png";
         }
     }
 }

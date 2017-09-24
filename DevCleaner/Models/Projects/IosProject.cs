@@ -4,6 +4,7 @@
     {
         public IosProject(string projectPath) : base(projectPath)
         {
+            IconPath = "/Icons/apple.png";
         }
     }
 }

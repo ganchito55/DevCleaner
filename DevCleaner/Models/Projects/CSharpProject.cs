@@ -4,6 +4,7 @@
     {
         public CSharpProject(string projectPath) : base(projectPath)
         {
+            IconPath = "/Icons/csharp.png";
         }
     }
 }
