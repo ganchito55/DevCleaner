@@ -8,5 +8,7 @@ namespace DevCleaner.Models
         string Name { get; set; }
         bool IsSelected { get; set; }
         List<Project> Projects { get; set; }
+
+        void CleanSolution();
     }
 }

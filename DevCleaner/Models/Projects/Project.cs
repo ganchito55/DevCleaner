@@ -23,7 +23,7 @@ namespace DevCleaner.Models.Projects
 
         public Project(string projectPath)
         {
-            _projectPath = projectPath;
+            _projectPath = Path.GetDirectoryName(projectPath);
             Name = Path.GetFileNameWithoutExtension(projectPath);
         }
 
@@ -32,7 +32,19 @@ namespace DevCleaner.Models.Projects
         /// </summary>
         public virtual void CleanProject()
         {
-            //TODO add default clean code
+            //Delete bin folder
+            if (Directory.Exists(Path.Combine(_projectPath, "bin")))
+            {
+                Directory.Delete(Path.Combine(_projectPath, "bin"), true);
+            }
+
+            //Delete obj folder
+            if (Directory.Exists(Path.Combine(_projectPath, "obj")))
+            {
+                Directory.Delete(Path.Combine(_projectPath, "obj"), true);
+            }
+
+
         }
 
         /// <summary>
